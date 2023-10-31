@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import Login from './pages/Login'
+import Track from './pages/Track'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
       <section className='main-container'>
         <Routes>
           <Route path="login" element={<Login />}/>
+          <Route path="track" element={<Track />}/>
         </Routes>
       </section>
     </>
