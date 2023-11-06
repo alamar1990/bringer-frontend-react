@@ -2,10 +2,10 @@ import useLogin from '../hooks/useAuth';
 import './LoginForm.css';
 
 const LoginForm = () => {
-  const { email, password, handleLogin, jwtToken, LoginContext, setEmail, setPassword } = useLogin();
+  const { email, password, handleLogin, setEmail, setPassword } = useLogin();
 
   return (
-    <LoginContext.Provider value={{ jwtToken }}>
+    <>
       <div className="login-container">
         <div className="input-container">
           <input
@@ -36,7 +36,7 @@ const LoginForm = () => {
           <button onClick={() => handleLogin(email, password)}>Login</button>
         </div>
       </div>
-    </LoginContext.Provider>
+    </>
   );
 };
 

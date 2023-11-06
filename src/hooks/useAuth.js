@@ -1,9 +1,9 @@
 import { useContext, createContext, useEffect, useState } from 'react';
 import axios from 'axios';
-
-const LoginContext = createContext();
+import { useNavigate  } from "react-router-dom";
 
 const useLogin = () => {
+  const navigateTo = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [jwtToken, setJwtToken] = useState('');
@@ -30,13 +30,13 @@ const useLogin = () => {
       setJwtToken(response.data.token);
       localStorage.setItem('jwtToken', response.data.token);
       localStorage.setItem('isLoggedIn', 'true');
-      alert('Login successful!');      
+      navigateTo('/track')            
     } catch (error) {
       console.error('Error occurred during login:', error);      
     }
   };
 
-  return { email, password, handleLogin, jwtToken, LoginContext, setEmail, setPassword, setJwtToken };
+  return { email, password, handleLogin, jwtToken, setEmail, setPassword, setJwtToken };
 };
 
 export default useLogin;

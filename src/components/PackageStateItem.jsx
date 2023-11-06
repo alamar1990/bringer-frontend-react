@@ -1,12 +1,14 @@
 import React from 'react';
 import './PackageStateItem.css'
 
-const PackageStateItem = ({ date, description, location, isFirst }) => {
+const PackageStateItem = ({ item, isFirst }) => {
+
+  const {timestamp, location} = item
+
   return (
     <div className="carousel-item">
       {!isFirst && <div className="vertical-line"></div>}
-      <div className="date">{date}</div>
-      <div className="description">{description}</div>
+      <div className="date">{timestamp}</div>
       <div className="location">{location}</div>
     </div>
   );
