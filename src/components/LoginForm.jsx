@@ -14,7 +14,6 @@ const LoginForm = () => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
-              localStorage.setItem('email', e.target.value);
             }}
             required
           />

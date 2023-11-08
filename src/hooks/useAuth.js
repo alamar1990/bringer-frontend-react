@@ -1,23 +1,15 @@
 import { useContext, createContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import useAuthStore from '../store/authStore'
+import axios from 'axios'; 
 import { useNavigate  } from "react-router-dom";
 
 const useLogin = () => {
+  const jwtToken = useAuthStore((state) => state.jwtToken)
+  const setJwtToken = useAuthStore((state) => state.setJwtToken)
+
   const navigateTo = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [jwtToken, setJwtToken] = useState('');
-
-  useEffect(() => {
-    const storedemail = localStorage.getItem('email');
-    const storedJwtToken = localStorage.getItem('jwtToken');
-    if (storedemail) {
-      setEmail(storedemail);
-    }
-    if (storedJwtToken) {
-      setJwtToken(storedJwtToken);
-    }
-  }, []);
 
   const handleLogin = async (enteredemail, enteredPassword) => {
     try {
@@ -28,8 +20,6 @@ const useLogin = () => {
       if (!response.data.token) throw new Error('No token returned')
 
       setJwtToken(response.data.token);
-      localStorage.setItem('jwtToken', response.data.token);
-      localStorage.setItem('isLoggedIn', 'true');
       navigateTo('/track')            
     } catch (error) {
       console.error('Error occurred during login:', error);      

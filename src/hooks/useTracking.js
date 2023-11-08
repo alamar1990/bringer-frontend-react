@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate  } from "react-router-dom";
 import useLogin from './useAuth';
@@ -25,7 +25,8 @@ const useTracking = () => {
 
     } catch (error) {
       console.error('Error occurred while pulling package data:', error); 
-      // navigateTo("/login");
+      alert(error)
+      navigateTo("/login");
     }
   }
 
