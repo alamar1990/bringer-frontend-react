@@ -1,4 +1,4 @@
-// MainComponent.js
+import './PackageTracking.css'
 import PackageStateItem from './PackageStateItem';
 
 const items = [
@@ -1406,20 +1406,24 @@ const items = [
   }
 ]
 
-
 const PackageTracking = ({trackingItems}) => {
 
   console.log({trackingItems});
+  console.log({items});
 
   return (
-    <div className="carousel-container">
-      {items.map((item, index) => (
-          <PackageStateItem
-            key={index}
-            item={item}
-        />
-      ))}
-    </div>
+
+    <section>
+      <div className="container">
+        {trackingItems ? (
+          trackingItems.map((item, index) => (
+            <PackageStateItem key={index} item={item} isActive={false} />
+          ))
+        ) : (
+          <div>No tracking items available</div>
+        )}
+      </div>
+    </section>
   );
 };
 
