@@ -1,4 +1,4 @@
-# Bringer API
+# Bringer Frontend
 - Clone project
 - Run `` npm install ``
 - Create .env file in from .env.example file 
