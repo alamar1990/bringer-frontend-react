@@ -3,6 +3,9 @@
 - Run `` npm install ``
 - Create .env file in from .env.example file 
 - Run `` npm run dev ``
+- Test Credentials (Mock User)
+  email: pepe@gmail.com
+  password: test
 
 # React + Vite
 
