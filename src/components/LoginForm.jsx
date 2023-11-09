@@ -1,8 +1,8 @@
-import useLogin from '../hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import './LoginForm.css';
 
 const LoginForm = () => {
-  const { email, password, handleLogin, setEmail, setPassword } = useLogin();
+  const { email, password, handleLogin, setEmail, setPassword } = useAuth();
 
   return (
     <>

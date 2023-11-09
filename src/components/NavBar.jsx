@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import useAuthStore from '../store/authStore'
+import useAuth from "../hooks/useAuth";
 
 function NavBar() {
+  const { handleLogout } = useAuth();
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated)
+  console.log({isAuthenticated});
+
   return (
     <section className='navbar'>
-      <Link className="link" to="track">Track</Link>
-      <Link className="link" to="login">Login</Link>
+      
+      {
+        isAuthenticated && <a className="link" onClick={handleLogout}>Logout</a>
+      }
+      
     </section>
   )
 }

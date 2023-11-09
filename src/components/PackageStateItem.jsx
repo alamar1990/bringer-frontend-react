@@ -2,7 +2,7 @@ const PackageStateItem = ({ item, isActive }) => {
   const {tracking_code_vendor} = item
   const date = new Date(tracking_code_vendor?.data?.date);
   const formattedDate = date.toDateString()
-
+    
   return (  
     <div className="step">
       <div className="left">

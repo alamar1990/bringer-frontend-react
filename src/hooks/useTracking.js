@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import useAuthStore from '../store/authStore';
 import { useNavigate  } from "react-router-dom";
-import useLogin from './useAuth';
+import useAuth from './useAuth';
 
 const useTracking = () => { 
+  const setIsAuthenticated = useAuthStore((state) => state.setIsAuthenticated)
   const [trackingItems, setTrackingItems] = useState();
-  const { jwtToken } = useLogin();
+  const { jwtToken } = useAuth();
   const navigateTo = useNavigate();
 
   const pullTrackingData = async (trackingNumber) => {
@@ -20,13 +22,19 @@ const useTracking = () => {
       const { trackingData: {parcel_tracking_items} } = data    
 
       if(parcel_tracking_items) {
+        parcel_tracking_items.reverse()
         setTrackingItems(parcel_tracking_items)
-      }        
-
-    } catch (error) {
-      console.error('Error occurred while pulling package data:', error); 
-      alert(error)
+      }
+    } catch (error) {      
+      if (error.response?.data?.remote_api_error){
+        setTrackingItems(null)
+        console.error('Error occurred while pulling package data:', error); 
+        alert('REMOTE API ERROR: ' + error.response?.data?.error?.message)
+        return
+      }
+      console.error('Server Error :', error); 
       navigateTo("/login");
+      setIsAuthenticated(false);
     }
   }
 

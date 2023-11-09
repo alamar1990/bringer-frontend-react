@@ -1407,17 +1407,14 @@ const items = [
 ]
 
 const PackageTracking = ({trackingItems}) => {
-
-  console.log({trackingItems});
-  console.log({items});
-
   return (
-
     <section>
       <div className="container">
         {trackingItems ? (
           trackingItems.map((item, index) => (
+            item.trackingCodeVendorId ?
             <PackageStateItem key={index} item={item} isActive={false} />
+            : null
           ))
         ) : (
           <div>No tracking items available</div>
